@@ -1,0 +1,300 @@
+version: 1
+
+# ==================================================
+# AGENTS
+# ==================================================
+
+agents:
+  - name: python-project-steward
+    role: >
+      Senior Python engineer responsible for enforcing standards,
+      implementing features, maintaining tests, updating implementation
+      status, and ensuring long-term project health.
+    temperament: strict-but-helpful
+
+  - name: project-planning-agent
+    role: >
+      Technical planning and architecture agent responsible for
+      shaping project intent, scope, structure, and implementation plans
+      before any code is written.
+    temperament: thoughtful-and-inquisitive
+
+  - name: project-review-agent
+    role: >
+      Independent reviewer responsible for critically evaluating
+      vision, architecture, implementation plans, and decisions
+      before implementation proceeds.
+    temperament: skeptical-but-constructive
+
+# ==================================================
+# PROJECT STRUCTURE (NON-NEGOTIABLE)
+# ==================================================
+
+project:
+  language: python
+  packaging: src-layout
+
+  required_directories:
+    - src
+    - docs
+    - tests
+
+  forbidden_patterns:
+    - tests outside /tests
+    - imports from project root
+    - undocumented public APIs
+
+# ==================================================
+# DOCUMENTATION (SYSTEM MEMORY)
+# ==================================================
+
+documentation:
+  required: true
+  tool: sphinx
+  root: docs
+
+  structure:
+    general: docs/general
+    implementation: docs/implementation
+    decisions: docs/decisions
+
+  bootstrap:
+    command: sphinx-quickstart docs
+    conf_py:
+      extensions:
+        - sphinx.ext.autodoc
+        - sphinx.ext.napoleon
+        - sphinx.ext.viewcode
+      napoleon_google_docstring: true
+      napoleon_numpy_docstring: true
+
+  required_files:
+    - docs/index.rst
+    - docs/general/vision.rst
+    - docs/general/description.rst
+    - docs/general/architecture.rst
+    - docs/implementation/plan.rst
+    - docs/implementation/status.rst
+
+# ==================================================
+# ARCHITECTURE DECISION RECORDS (ADRs)
+# ==================================================
+
+architecture_decisions:
+  required: true
+  root: docs/decisions
+
+  naming_convention: ADR-XXX-<short-title>.rst
+
+  required_sections:
+    - status
+    - context
+    - decision
+    - alternatives_considered
+    - consequences
+
+# ==================================================
+# PLANNING OWNERSHIP & SCHEMAS
+# ==================================================
+
+planning:
+  ownership:
+    agent: project-planning-agent
+    files:
+      - docs/general/vision.rst
+      - docs/general/description.rst
+      - docs/general/architecture.rst
+      - docs/implementation/plan.rst
+
+planning_schemas:
+  vision:
+    file: docs/general/vision.rst
+    sections:
+      - problem_statement
+      - target_users
+      - success_criteria
+      - non_goals
+      - constraints
+
+  description:
+    file: docs/general/description.rst
+    sections:
+      - high_level_overview
+      - key_features
+      - user_workflows
+      - out_of_scope
+
+  architecture:
+    file: docs/general/architecture.rst
+    sections:
+      - system_context
+      - core_components
+      - data_flow
+      - external_dependencies
+      - tradeoffs_and_decisions
+
+  implementation_plan:
+    file: docs/implementation/plan.rst
+    sections:
+      - milestones
+      - dependencies
+      - risks
+      - validation_strategy
+
+# ==================================================
+# TESTING (FIRST-CLASS)
+# ==================================================
+
+testing:
+  required: true
+  framework: pytest
+  root: tests
+
+  structure:
+    unit: tests/unit
+    integration: tests/integration
+    e2e: tests/e2e
+
+  required_files:
+    - tests/conftest.py
+    - tests/test_plan.md
+
+  conventions:
+    file_naming: test_*.py
+    import_policy: import-from-src
+
+test_planning:
+  ownership:
+    agent: project-planning-agent
+    file: tests/test_plan.md
+
+  schema:
+    sections:
+      - scope
+      - unit_tests
+      - integration_tests
+      - e2e_tests
+      - non_goals
+
+# ==================================================
+# EXECUTION GATES (HARD BLOCKS)
+# ==================================================
+
+execution_policy:
+  gates:
+    - name: planning_completeness_gate
+      description: >
+        Prevents implementation until general vision, architecture,
+        and implementation planning documents exist.
+      evaluated_by: project-planning-agent
+      require:
+        - docs/general/vision.rst
+        - docs/general/description.rst
+        - docs/general/architecture.rst
+        - docs/implementation/plan.rst
+
+    - name: design_review_gate
+      description: >
+        Requires independent review of architecture and plans.
+      evaluated_by: project-review-agent
+      require:
+        - planning_review_passed
+
+    - name: testing_gate
+      description: >
+        Prevents implementation without a documented test plan.
+      require:
+        - tests/test_plan.md
+
+# ==================================================
+# AGENT COLLABORATION FLOW
+# ==================================================
+
+agent_collaboration:
+  workflow:
+    - step: ideation
+      owner: project-planning-agent
+      outputs:
+        - docs/general/vision.rst
+        - docs/general/description.rst
+
+    - step: design
+      owner: project-planning-agent
+      outputs:
+        - docs/general/architecture.rst
+        - docs/decisions/ADR-*.rst
+
+    - step: review
+      owner: project-review-agent
+      outputs:
+        - review_notes
+        - required_changes
+
+    - step: implementation
+      owner: python-project-steward
+      requires:
+        - review_approved
+
+# ==================================================
+# STATUS-DRIVEN BEHAVIOR
+# ==================================================
+
+status_tracking:
+  file: docs/implementation/status.rst
+  owner: python-project-steward
+
+status_driven_behavior:
+  rules:
+    - if: status == blocked
+      then: propose_resolution_steps
+
+    - if: feature_completed
+      then:
+        - ensure_tests_exist
+        - update_status
+        - update_architecture_if_needed
+
+# ==================================================
+# POST-IMPLEMENTATION OBLIGATIONS
+# ==================================================
+
+post_implementation:
+  required_actions:
+    - update docs/general/architecture.rst
+    - update docs/implementation/status.rst
+    - add_or_update_tests
+    - ensure pytest passes
+    - ensure sphinx builds cleanly
+
+# ==================================================
+# QUALITY BARS
+# ==================================================
+
+quality:
+  coverage:
+    minimum_percent: 85
+
+  linting:
+    tool: ruff
+
+  formatting:
+    tool: black
+
+  documentation:
+    fail_on_sphinx_warnings: true
+
+# ==================================================
+# CI AWARENESS (ANTICIPATE FAILURES)
+# ==================================================
+
+ci_awareness:
+  enforced_rules:
+    - architecture_changes_require_adr
+    - docs_must_exist
+    - tests_must_pass
+    - sphinx_must_build
+
+  agent_behavior:
+    - anticipate_ci_failures
+    - fix_before_requesting_review
+

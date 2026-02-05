@@ -1,0 +1,10 @@
+{
+  "project_name": "My Python Project",
+  "project_slug": "my-python-project",
+  "package_name": "my_python_project",
+  "author_name": "Your Name",
+  "author_email": "you@example.com",
+  "python_version": "3.11",
+  "use_ruff": true,
+  "use_black": true
+}
