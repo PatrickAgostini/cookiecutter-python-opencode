@@ -67,13 +67,21 @@ your-project/
 │   └── __init__.py               # Package metadata
 ├── docs/                         # Sphinx documentation
 │   ├── general/                  # High-level docs
+│   │   ├── index.rst           # Section entry point
 │   │   ├── vision.rst           # Project vision & goals
 │   │   ├── description.rst     # Project description
 │   │   └── architecture.rst    # System architecture
 │   ├── implementation/           # Implementation tracking
+│   │   ├── index.rst           # Section entry point
 │   │   ├── plan.rst            # Implementation milestones
 │   │   └── status.rst          # Progress tracking
-│   └── decisions/               # Architecture Decision Records
+│   ├── api/                     # Auto-generated API docs
+│   │   ├── index.rst           # API section entry point
+│   │   └── modules.rst         # Module documentation
+│   ├── decisions/               # Architecture Decision Records
+│   │   └── README.md           # ADR index
+│   ├── conf.py                 # Sphinx configuration
+│   └── index.rst               # Main documentation entry point
 ├── tests/                        # Comprehensive test suite
 │   ├── unit/                    # Unit tests
 │   ├── integration/             # Integration tests
@@ -318,6 +326,27 @@ The template enforces these quality requirements:
 | `python_version` | "3.11" | Minimum Python version |
 | `use_ruff` | `true` | Enable ruff linting |
 | `use_black` | `true` | Enable black formatting |
+| `sphinx_theme` | "shibuya" | Sphinx documentation theme |
+
+### **Available Sphinx Themes**
+
+Choose from these modern and classic themes:
+
+**Modern Themes:**
+- `shibuya` (Default) - Clean, modern design with light/dark mode
+- `furo` - Minimalist, fast-loading design
+- `pydata_sphinx_theme` - Data science focused with GitHub integration
+- `sphinx_book_theme` - Book-like layout for tutorials
+- `sphinx_immaterial` - Material Design inspired
+
+**Classic & Specialized:**
+- `sphinx_rtd_theme` - Popular Read the Docs theme
+- `alabaster` - Classic Sphinx built-in theme
+- `sphinxawesome_theme` - Bold, distinctive design
+- `piccolo_theme` - Clean, minimalist
+- `sphinx_press_theme` - Typography-focused
+
+See [SPHINX_THEMES.md](SPHINX_THEMES.md) for detailed theme descriptions and screenshots.
 
 ---
 
