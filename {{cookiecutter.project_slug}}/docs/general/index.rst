@@ -9,4 +9,3 @@ This section contains general documentation about {{ cookiecutter.project_name }
 
    description
    vision
-   architecture

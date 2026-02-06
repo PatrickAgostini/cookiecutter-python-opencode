@@ -34,7 +34,7 @@ def validate_project_structure():
         "docs/implementation/plan.rst",
         "tests/conftest.py",
         "tests/test_plan.md",
-        "Makefile",
+        "tox.ini",
     ]
 
     missing_files = []
@@ -63,9 +63,9 @@ def validate_project_structure():
     print(f"🐍 Python: {{cookiecutter.python_version}}")
     print("\n🚀 Next steps:")
     print("   1. cd {{cookiecutter.project_slug}}")
-    print("   2. make install-dev")
+    print("   2. tox -e install-dev")
     print("   3. Complete the planning documents in docs/")
-    print("   4. Run tests with: make test")
+    print("   4. Run tests with: tox -e test")
 
 
 if __name__ == "__main__":

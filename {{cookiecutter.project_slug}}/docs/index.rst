@@ -14,7 +14,7 @@ Welcome to the documentation for {{ cookiecutter.project_name }}! This comprehen
    :caption: Implementation
 
    implementation/index
-   
+
 .. toctree::
    :maxdepth: 2
    :caption: API Documentation
@@ -22,10 +22,10 @@ Welcome to the documentation for {{ cookiecutter.project_name }}! This comprehen
    api/index
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Architecture Decisions
+   :maxdepth: 2
+   :caption: Architecture
 
-   decisions/README
+   architecture/index
 
 Indices and tables
 ==================
