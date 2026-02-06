@@ -45,23 +45,23 @@ def validate_project_structure():
 
     # Report any issues
     if missing_dirs:
-        print("❌ Missing required directories:")
+        print("Missing required directories:")
         for dir_path in missing_dirs:
             print(f"   - {dir_path}")
 
     if missing_files:
-        print("❌ Missing required files:")
+        print("Missing required files:")
         for file_path in missing_files:
             print(f"   - {file_path}")
 
     if missing_dirs or missing_files:
         raise SystemExit("Project generation failed - missing required structure")
 
-    print("✅ Project generated successfully!")
-    print(f"📁 Project: {{cookiecutter.project_name}}")
-    print(f"📦 Package: {{cookiecutter.package_name}}")
-    print(f"🐍 Python: {{cookiecutter.python_version}}")
-    print("\n🚀 Next steps:")
+    print("Project generated successfully!")
+    print(f"Project: {{cookiecutter.project_name}}")
+    print(f"Package: {{cookiecutter.package_name}}")
+    print(f"Python: {{cookiecutter.python_version}}")
+    print("\nNext steps:")
     print("   1. cd {{cookiecutter.project_slug}}")
     print("   2. tox -e install-dev")
     print("   3. Complete the planning documents in docs/")
