@@ -152,7 +152,7 @@ Decision 2: [Decision Name]
 * [Alternative 2] - [Why it was rejected]
 
 Security Considerations
-----------------------
+------------------------
 
 [TODO: Describe security architecture and considerations]
 
@@ -197,7 +197,7 @@ Deployment Architecture
 [TODO: Describe how the system is deployed]
 
 Environment Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [TODO: Describe environment setup]
 

@@ -34,7 +34,7 @@ This template intentionally behaves like a **senior engineer with standards** - 
 
 ### Generate Project
 ```bash
-cookiecutter gh:anomalyco/opencode
+cookiecutter gh:PatrickAgostini/cookiecutter-python-opencode
 ```
 
 ### Setup Generated Project

@@ -1,8 +1,8 @@
 Implementation Status
-====================
+======================
 
 Project Overview
----------------
+----------------
 
 **Project**: {{ cookiecutter.project_name }}
 **Started**: [TODO: Add start date]

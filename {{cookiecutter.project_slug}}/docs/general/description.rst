@@ -1,5 +1,5 @@
 Project Description
-==================
+=====================
 
 High Level Overview
 -------------------
@@ -41,7 +41,7 @@ Technical Details
 * **Data Storage**: [Describe how data is stored]
 
 Out of Scope
------------
+-------------
 
 [TODO: Clearly list what this project will not do]
 

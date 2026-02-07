@@ -7,4 +7,8 @@ This section contains all documentation related to the architecture of the proje
    :maxdepth: 2
 
    architecture
-   decisions
+
+Architecture Decisions
+-----------------------
+
+See :doc:`decisions.md` for Architecture Decision Records (ADRs).
