@@ -11,4 +11,4 @@ This section contains all documentation related to the architecture of the proje
 Architecture Decisions
 -----------------------
 
-See :doc:`decisions.md` for Architecture Decision Records (ADRs).
+
