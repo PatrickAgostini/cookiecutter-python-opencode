@@ -49,16 +49,7 @@ python_functions = ["test_*"]
 line-length = 88
 target-version = ["py{{cookiecutter.python_version.replace('.', '')}}"]
 include = '\.pyi?$'
-extend-exclude = [
-    "/.eggs/",
-    "/.git/",
-    "/.hg/",
-    "/.mypy_cache/",
-    "/.tox/",
-    "/.venv/",
-    "/build/",
-    "/dist/",
-]
+extend-exclude = "/(.eggs|.git|.hg|.mypy_cache|.tox|.venv|build|dist)/"
 {% endif %}
 
 {% if cookiecutter.use_ruff %}

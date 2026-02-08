@@ -4,9 +4,10 @@ Pytest configuration and fixtures for {{ cookiecutter.project_name }}.
 This module provides common test fixtures and configuration for the test suite.
 """
 
-import pytest
 import sys
 from pathlib import Path
+
+import pytest
 
 # Add src directory to Python path for imports
 src_path = Path(__file__).parent.parent / "src"
