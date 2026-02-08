@@ -21,7 +21,7 @@ This project follows engineering discipline with:
 tox -e install-dev
 
 # Run tests to verify setup
-tox -e py{{ cookiecutter.python_version.replace('.', '') }}
+tox -e test
 
 # Build documentation
 tox -e docs
@@ -29,7 +29,7 @@ tox -e docs
 
 ### Development Commands
 ```bash
-tox -e py{{ cookiecutter.python_version.replace('.', '') }}  # Run tests
+tox -e test                                # Run tests
 tox -e cov                                 # Run tests with coverage
 tox -e lint                                # Check code quality
 tox -e format                              # Format code
