@@ -65,7 +65,7 @@ def validate_project_structure():
     print("   1. cd {{cookiecutter.project_slug}}")
     print("   2. tox -e install-dev")
     print("   3. Complete the planning documents in docs/")
-    print("   4. Run tests with: tox -e test")
+    print("   4. Run tests with: tox -e tests")
 
 
 if __name__ == "__main__":
