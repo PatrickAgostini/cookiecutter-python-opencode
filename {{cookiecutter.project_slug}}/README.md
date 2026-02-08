@@ -14,29 +14,29 @@ This project follows engineering discipline with:
 
 ### Prerequisites
 - Python {{ cookiecutter.python_version }}+
-- Make (for development commands)
 
 ### Setup
 ```bash
 # Install development dependencies
-make install-dev
+tox -e install-dev
 
 # Run tests to verify setup
-make test
+tox -e py{{ cookiecutter.python_version.replace('.', '') }}
 
 # Build documentation
-make docs
+tox -e docs
 ```
 
 ### Development Commands
 ```bash
-make test          # Run tests
-make test-cov      # Run tests with coverage
-make lint          # Check code quality
-make format        # Format code
-make clean         # Clean build artifacts
-make docs          # Build documentation
-make docs-serve    # Serve documentation locally
+tox -e py{{ cookiecutter.python_version.replace('.', '') }}  # Run tests
+tox -e cov                                 # Run tests with coverage
+tox -e lint                                # Check code quality
+tox -e format                              # Format code
+tox -e typecheck                           # Run type checking
+tox -e docs                                # Build documentation
+tox -e serve-docs                          # Serve documentation locally
+tox -e clean                               # Clean build artifacts
 ```
 
 ## 📁 Project Structure
@@ -47,7 +47,7 @@ make docs-serve    # Serve documentation locally
 ├── docs/                                   # Project documentation
 │   ├── general/                           # High-level documentation
 │   ├── implementation/                    # Implementation tracking
-│   └── decisions/                         # Architecture Decision Records
+│   └── architecture/                      # Architecture Decision Records
 ├── tests/                                 # Test suite
 │   ├── unit/                             # Unit tests
 │   ├── integration/                      # Integration tests
@@ -67,7 +67,7 @@ Before implementing any features, complete these planning documents:
 - Project goals and non-goals
 - Constraints and requirements
 
-### **2. System Architecture** (`docs/general/architecture.rst`)
+### **2. System Architecture** (`docs/architecture/architecture.rst`)
 - System context and components
 - Data flow and external dependencies
 - Technology choices and tradeoffs
@@ -110,7 +110,7 @@ This project includes OpenCode configuration with:
 
 ### **1. Planning Phase**
 1. Complete `docs/general/vision.rst`
-2. Design system in `docs/general/architecture.rst`
+2. Design system in `docs/architecture/architecture.rst`
 3. Create milestones in `docs/implementation/plan.rst`
 4. Plan testing in `tests/test_plan.md`
 
@@ -123,10 +123,10 @@ This project includes OpenCode configuration with:
 ### **3. Quality Assurance**
 ```bash
 # Run full quality check
-make test-cov    # Verify coverage ≥85%
-make lint        # Check code quality
-make format      # Format code
-make docs        # Build documentation
+tox -e cov       # Verify coverage ≥85%
+tox -e lint      # Check code quality
+tox -e format    # Format code
+tox -e docs      # Build documentation
 ```
 
 ## 📊 Project Status
@@ -134,10 +134,10 @@ make docs        # Build documentation
 Current implementation status is tracked in `docs/implementation/status.rst`.
 
 ### **Quality Metrics**
-- Test Coverage: [Measured with `make test-cov`]
-- Code Quality: [Checked with `make lint`]
-- Documentation: [Built with `make docs`]
-- Type Safety: [Checked with mypy]
+- Test Coverage: [Measured with `tox -e cov`]
+- Code Quality: [Checked with `tox -e lint`]
+- Documentation: [Built with `tox -e docs`]
+- Type Safety: [Checked with `tox -e typecheck`]
 
 ## 🔧 Configuration
 
@@ -157,9 +157,9 @@ Modify `opencode.yml` to customize agent behavior and quality gates.
 ## 📚 Documentation
 
 - **[API Documentation](docs/api/)** - Generated API reference
-- **[Architecture Guide](docs/general/architecture.rst)** - System design
+- **[Architecture Guide](docs/architecture/architecture.rst)** - System design
 - **[Implementation Status](docs/implementation/status.rst)** - Progress tracking
-- **[Architecture Decisions](docs/decisions/)** - Design rationale
+- **[Architecture Decisions](docs/architecture/decisions.rst)** - Design rationale
 
 ## 🤝 Contributing
 

@@ -51,9 +51,12 @@ tox -e install-dev
 
 ### Start Development
 ```bash
-tox -e test      # Run tests
+tox -e py311     # Run tests
 tox -e lint      # Check code quality
+tox -e format    # Format code
+tox -e typecheck # Type checking
 tox -e docs      # Build documentation
+tox -e cov       # Coverage report
 tox -e quality   # Run all quality checks
 ```
 
@@ -77,7 +80,7 @@ your-project/
 │   ├── architecture/            # Architecture documentation
 │   │   ├── index.rst             # Architecture section entry point
 │   │   ├── architecture.rst      # System architecture
-│   │   └── decisions.md          # Architecture Decision Records
+│   │   └── decisions.rst         # Architecture Decision Records
 │   ├── api/                     # Auto-generated API docs
 │   │   ├── index.rst           # API section entry point
 │   │   └── modules.rst         # Module documentation
@@ -231,6 +234,7 @@ The agents automatically enforce:
 #### **📊 Quality Metrics**
 - **Test Coverage**: ≥85% (checked with `tox -e cov`)
 - **Code Quality**: Zero ruff errors (checked with `tox -e lint`)
+- **Code Formatting**: Consistent black/ruff formatting (checked with `tox -e format`)
 - **Type Safety**: Zero mypy errors (checked with `tox -e typecheck`)
 - **Documentation**: Clean Sphinx build (checked with `tox -e docs`)
 
@@ -245,7 +249,7 @@ The agents respond to project status:
 #### **📝 Planning First**
 - Never write code without completing planning documents
 - Always get architecture review before implementation
-- Document decisions with ADRs in `docs/architecture/decisions.md`
+- Document decisions with ADRs in `docs/architecture/decisions.rst`
 
 #### **🧪 Test-Driven Development**
 - Write tests before or alongside code
@@ -298,11 +302,22 @@ OpenCode: Switching to python-project-steward. Let's start implementation...
 ### **1. Planning Phase** (Required)
 ```bash
 # Edit planning documents
-vim docs/general/vision.rst      # Define problem & success criteria
-vim docs/architecture/architecture.rst # Design system architecture
-vim docs/implementation/plan.rst  # Create implementation milestones
-vim tests/test_plan.md            # Plan comprehensive testing
 ```
+
+### **2. Implementation Phase**
+```bash
+# Implement features and tests
+```
+
+### **3. Quality Assurance**
+```bash
+# Run quality checks
+tox -e cov       # Verify coverage ≥85%
+tox -e lint      # Check code quality
+tox -e format    # Format code
+tox -e docs      # Build documentation
+```
+
 
 ### **2. Implementation Phase**
 ```bash
