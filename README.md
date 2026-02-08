@@ -51,7 +51,7 @@ tox -e install-dev
 
 ### Start Development
 ```bash
-tox -e test      # Run tests
+tox -e tests     # Run tests
 tox -e lint      # Check code quality
 tox -e format    # Format code
 tox -e typecheck # Type checking
@@ -59,6 +59,7 @@ tox -e docs      # Build documentation
 tox -e cov       # Coverage report
 tox -e quality   # Run all quality checks
 ```
+
 
 
 ---

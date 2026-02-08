@@ -21,7 +21,7 @@ This project follows engineering discipline with:
 tox -e install-dev
 
 # Run tests to verify setup
-tox -e test
+tox -e tests
 
 # Build documentation
 tox -e docs
@@ -29,7 +29,7 @@ tox -e docs
 
 ### Development Commands
 ```bash
-tox -e test                                # Run tests
+tox -e tests                               # Run tests
 tox -e cov                                 # Run tests with coverage
 tox -e lint                                # Check code quality
 tox -e format                              # Format code
